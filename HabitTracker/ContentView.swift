@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var habits = Habits()
+    @State private var showAddHabit = false
     
     var body: some View {
         NavigationView {
@@ -21,12 +22,14 @@ struct ContentView: View {
             .navigationBarTitle("HabitTracker")
             .navigationBarItems(trailing:
                 Button(action: {
-                    let habit = HabitItem(name: "Clean Dishes")
-                    self.habits.items.append(habit)
+                    self.showAddHabit.toggle()
                 }) {
                     Text("Add New Habit")
                 }
             )
+        }
+        .sheet(isPresented: $showAddHabit) {
+            AddView(habits: self.habits)
         }
     }
     
