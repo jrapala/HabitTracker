@@ -16,6 +16,7 @@ struct ContentView: View {
                 ForEach(habits.items, id: \.name) { item in
                     Text(item.name)
                 }
+                .onDelete(perform: removeItems)
             }
             .navigationBarTitle("HabitTracker")
             .navigationBarItems(trailing:
@@ -27,6 +28,10 @@ struct ContentView: View {
                 }
             )
         }
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        habits.items.remove(atOffsets: offsets)
     }
 }
 
