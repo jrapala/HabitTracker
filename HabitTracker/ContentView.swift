@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var habits = Habits()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                ForEach(habits.items, id: \.name) { item in
+                    Text(item.name)
+                }
+            }
+            .navigationBarTitle("HabitTracker")
+        }
     }
 }
+
+
+class Habits: ObservableObject {
+    @Published var items = [HabitItem]()
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
