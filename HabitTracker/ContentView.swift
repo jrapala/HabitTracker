@@ -18,6 +18,14 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("HabitTracker")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    let habit = HabitItem(name: "Clean Dishes")
+                    self.habits.items.append(habit)
+                }) {
+                    Text("Add New Habit")
+                }
+            )
         }
     }
 }
