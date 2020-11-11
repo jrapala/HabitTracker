@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HabitItem: Identifiable {
-    let id = UUID()
+struct HabitItem: Identifiable, Codable {
+    var id = UUID()
     let name: String
 }
