@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddView: View {
     @State private var name = ""
+    @State private var description = ""
     @ObservedObject var habits: Habits
     @State private var showAlert = false
     @State private var alertTitle = ""
@@ -19,11 +20,12 @@ struct AddView: View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
+                TextField("Description", text: $description)
             }
             .navigationBarTitle("Add a New Habit")
             .navigationBarItems(trailing: Button("Save") {
                 if self.name.count > 0 {
-                    let item = HabitItem(name: self.name)
+                    let item = HabitItem(name: self.name, description: self.description)
                     self.habits.items.append(item)
                     self.presentationMode.wrappedValue.dismiss()
                 } else {
